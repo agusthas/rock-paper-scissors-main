@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn-top-shadow {
+    box-shadow: 0px 0.5em 1px 0px rgba(0, 0, 0, 0.1) inset;
+  }
+
+  .btn-bottom-shadow {
+    box-shadow: 0px -0.5em 1px 0px rgba(0, 0, 0, 0.25) inset;
+  }
+
+  .ripple {
+    box-shadow: 0px -0.5em 1px 0px rgba(0, 0, 0, 0.25) inset,
+      0 0 0 4rem rgba(255, 255, 255, 0.05), 0 0 0 8rem rgba(255, 255, 255, 0.05),
+      0 0 0 12rem rgba(255, 255, 255, 0.05);
+    animation: ripple 2s ease 3 backwards;
+  }
+
+  @keyframes ripple {
+    from {
+      box-shadow: 0 0 0 0rem rgba(255, 255, 255, 0.05),
+        0 0 0 2rem rgba(255, 255, 255, 0.05),
+        0 0 0 4rem rgba(255, 255, 255, 0.05);
+    }
+    to {
+      box-shadow: 0 0 0 4rem rgba(255, 255, 255, 0),
+        0 0 0 8rem rgba(255, 255, 255, 0), 0 0 0 12rem rgba(255, 255, 255, 0);
+    }
+  }
+}
