@@ -9,9 +9,10 @@ enum StatusEnum {
   DRAW = 'draw',
 }
 
+// TODO: can we add animation when we determine houseHand?
 const Game: React.FC<{
   playerHand: HandType;
-  setScore: (n: number) => void;
+  setScore: SetState<number>;
   setPlayerHand: SetState<HandState>;
 }> = ({ playerHand, setPlayerHand, setScore }) => {
   const [houseHand, setHouseHand] = useState<HandState>('');
@@ -43,9 +44,11 @@ const Game: React.FC<{
       if (houseHand === rules[playerHand]) {
         setStatus(StatusEnum.WIN);
         setWinnerHand(playerHand);
+        setScore((p) => p + 1);
       } else {
         setStatus(StatusEnum.LOSE);
         setWinnerHand(houseHand);
+        setScore((p) => (p > 0 ? p - 1 : p));
       }
     };
 

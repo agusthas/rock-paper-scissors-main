@@ -1,30 +1,27 @@
 import { useState } from 'react';
-import Game from './components/Game';
 import Header from './components/Header';
-import Play from './components/Play';
+import GameScreen from './components/GameScreen';
+import Rules from './components/Rules';
+import useLocalStorage from './hooks/useLocalStorage';
 
 export type HandType = 'paper' | 'scissors' | 'rock';
 
 export type HandState = HandType | '';
 
+// TODO: better way to distribute state?
 const App = () => {
   const [myHand, setMyHand] = useState<HandState>('');
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useLocalStorage('score', 0);
 
   return (
     <div className='flex h-screen flex-col bg-gradient-to-b from-bgGradientForm to-bgGradientTo font-sans'>
       <Header score={score} />
-      <main className='flex flex-1 items-center justify-center'>
-        {myHand ? (
-          <Game
-            playerHand={myHand}
-            setPlayerHand={setMyHand}
-            setScore={setScore}
-          />
-        ) : (
-          <Play setHand={setMyHand} />
-        )}
-      </main>
+      <GameScreen
+        playerHand={myHand}
+        setPlayerHand={setMyHand}
+        setScore={setScore}
+      />
+      <Rules />
     </div>
   );
 };
