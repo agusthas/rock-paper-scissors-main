@@ -1,7 +1,13 @@
+export { default as BgPentagon } from './BgPentagon';
 export { default as BgTriangle } from './BgTriangle';
 export { default as IconClose } from './IconClose';
+export { default as IconLizard } from './IconLizard';
 export { default as IconPaper } from './IconPaper';
 export { default as IconRock } from './IconRock';
 export { default as IconScissors } from './IconScissors';
+export { default as IconSpock } from './IconSpock';
+export { default as ImageRulesBonus } from './ImageRulesBonus';
 export { default as ImageRules } from './ImageRules';
+export { default as LogoBonus } from './LogoBonus';
+export { default as LogoSm } from './LogoSm';
 export { default as Logo } from './Logo';

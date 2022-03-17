@@ -9,6 +9,25 @@ enum StatusEnum {
   DRAW = 'draw',
 }
 
+const PickedHand: React.FC<{
+  hand: HandType | '';
+  ripple: boolean;
+}> = ({ hand, ripple }) => {
+  return (
+    <div className='grid grid-flow-row gap-6 sm:gap-16'>
+      <p className='relative z-10 order-1 font-semibold tracking-widest text-white sm:order-none sm:text-3xl'>
+        YOU PICKED
+      </p>
+      <div className='hidden sm:block'>
+        <Hand type={hand} size='lg' ripple={ripple} />
+      </div>
+      <div className='sm:hidden'>
+        <Hand type={hand} size='sm' ripple={ripple} />
+      </div>
+    </div>
+  );
+};
+
 // TODO: can we add animation when we determine houseHand?
 const Game: React.FC<{
   playerHand: HandType;
@@ -71,37 +90,26 @@ const Game: React.FC<{
   }, [status]);
 
   return (
-    <div className='flex items-center justify-center gap-32 text-center'>
-      <div>
-        <p className='relative z-10 mb-16 text-3xl font-semibold tracking-widest text-white'>
-          YOU PICKED
-        </p>
-        <Hand type={playerHand} size='lg' ripple={playerHand === winnerHand} />
-      </div>
+    <div className='flex flex-wrap items-center justify-center gap-x-12 gap-y-0 text-center sm:flex-nowrap sm:gap-32'>
+      <PickedHand hand={playerHand} ripple={playerHand === winnerHand} />
       {status && (
-        <div>
+        <div className='order-3 sm:order-none'>
           <div className='mb-16 text-3xl font-semibold tracking-widest text-white'></div>
           <div className='relative z-10 flex flex-col items-center justify-center gap-5 text-white md:min-w-[11rem]'>
-            <p className='text-5xl font-bold'>{statusText}</p>
+            <p className='text-7xl font-bold sm:text-5xl'>{statusText}</p>
             <button
               onClick={() => setPlayerHand('')}
-              className='w-full rounded-lg bg-white py-3 font-semibold leading-none tracking-widest text-bgGradientForm transition-colors hover:text-rockGradientFrom'
+              className='w-full rounded-lg bg-white py-4 font-semibold leading-none tracking-widest text-bgGradientForm transition-colors hover:text-rockGradientFrom sm:py-3'
             >
               PLAY AGAIN
             </button>
           </div>
         </div>
       )}
-      <div>
-        <p className='relative z-10 mb-16 text-3xl font-semibold tracking-widest text-white'>
-          THE HOUSE PICKED
-        </p>
-        <Hand
-          type={houseHand}
-          size='lg'
-          ripple={houseHand ? houseHand === winnerHand : false}
-        />
-      </div>
+      <PickedHand
+        hand={houseHand}
+        ripple={houseHand ? houseHand === winnerHand : false}
+      />
     </div>
   );
 };

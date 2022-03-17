@@ -9,12 +9,13 @@ export type HandType = 'paper' | 'scissors' | 'rock';
 export type HandState = HandType | '';
 
 // TODO: better way to distribute state?
+// TODO: background gradient
 const App = () => {
   const [myHand, setMyHand] = useState<HandState>('');
   const [score, setScore] = useLocalStorage('score', 0);
 
   return (
-    <div className='flex h-screen flex-col bg-gradient-to-b from-bgGradientForm to-bgGradientTo font-sans'>
+    <div className='flex min-h-screen flex-col bg-gradient-to-b from-bgGradientForm to-bgGradientTo font-sans'>
       <Header score={score} />
       <GameScreen
         playerHand={myHand}

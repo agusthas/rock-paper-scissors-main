@@ -9,7 +9,7 @@ const GameScreen: React.FC<{
   setScore: SetState<number>;
 }> = ({ playerHand, setPlayerHand, setScore }) => {
   return (
-    <main className='flex flex-1 items-center justify-center'>
+    <main className='mt-16 flex flex-1 items-center justify-center'>
       {playerHand ? (
         <Game
           playerHand={playerHand}

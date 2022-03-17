@@ -18,6 +18,13 @@
     animation: ripple 2s ease 3 backwards;
   }
 
+  .ripple-sm {
+    box-shadow: 0px -0.5em 1px 0px rgba(0, 0, 0, 0.25) inset,
+      0 0 0 2rem rgba(255, 255, 255, 0.05), 0 0 0 4rem rgba(255, 255, 255, 0.05),
+      0 0 0 6rem rgba(255, 255, 255, 0.05);
+    animation: ripple 2s ease 3 backwards;
+  }
+
   @keyframes ripple {
     from {
       box-shadow: 0 0 0 0rem rgba(255, 255, 255, 0.05),
